@@ -24,7 +24,7 @@ void xmlValidate(std::string dir) {
     myfile.open(dir);
 
     structures::ArrayStack<std::string> stack;
-    structures::ArrayQueue<std::string> parameters(10000); // Ordem = name, height, width, data
+    structures::ArrayQueue<std::string> parameters(10000);
 
     if (myfile.is_open()) {
         std::string word;
@@ -46,20 +46,12 @@ void xmlValidate(std::string dir) {
 
                         if (last == "height") {
                             parameters.enqueue(value);
-                            //height = std::stoi(value);
-                            //std::cout << "Height: " << height << std::endl;
                         } else if (last == "width") {
                             parameters.enqueue(value);
-                            //width = std::stoi(value);
-                            //std::cout << "Width: " << width << std::endl;
                         } else if (last == "name") {
                             parameters.enqueue(value);
-                            //name = value;
-                            //std::cout << "Name: " << name << std::endl;
                         } else if (last == "data") {
                             parameters.enqueue(value);
-                            //std::cout << "Data: " << value << std::endl;
-                            //toArray(value, height, width);
                         }
                         open = true;
                     } else {
@@ -84,7 +76,6 @@ void xmlValidate(std::string dir) {
         }
     }
 
-    //std::cout << parameters.size() << std::endl;
 
     if (stack.size() == 0) {
         while (!parameters.empty()) {
@@ -92,12 +83,6 @@ void xmlValidate(std::string dir) {
             std::string height = parameters.dequeue(); 
             std::string width = parameters.dequeue();
             std::string data = parameters.dequeue();
-
-            //std::cout << name << std::endl; 
-            //std::cout << height << std::endl;
-            //std::cout << width << std::endl;
-            //std::cout << data << std::endl;
-            //std::cout << "\n";
             
             counterSpaces(name, height, width, data);
         }
